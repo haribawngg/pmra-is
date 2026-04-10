@@ -17,6 +17,7 @@ export function PredictionPanel() {
             if (selectedModel === 'anemia') {
                 endpoint = 'http://localhost:8000/api/predict/anemia';
                 payload = {
+                    gender: parseInt(document.getElementById('inputGender').value) || 0,
                     hemoglobin: parseFloat(document.getElementById('inputHgb').value) || 0,
                     mch: parseFloat(document.getElementById('inputMch').value) || 0,
                     mchc: parseFloat(document.getElementById('inputMchc').value) || 0,
@@ -26,9 +27,12 @@ export function PredictionPanel() {
                 endpoint = 'http://localhost:8000/api/predict/diabetes';
                 payload = {
                     glucose: parseFloat(document.getElementById('inputGluc').value) || 0,
-                    hba1c: parseFloat(document.getElementById('inputHba1c').value) || 0,
-                    systolic_bp: parseFloat(document.getElementById('inputSys').value) || 0,
-                    diastolic_bp: parseFloat(document.getElementById('inputDia').value) || 0
+                    blood_pressure: parseFloat(document.getElementById('inputBP').value) || 0,
+                    skin_thickness: parseFloat(document.getElementById('inputSkin').value) || 0,
+                    insulin: parseFloat(document.getElementById('inputInsulin').value) || 0,
+                    bmi: parseFloat(document.getElementById('inputBmi').value) || 0,
+                    diabetes_pedigree: parseFloat(document.getElementById('inputPedigree').value) || 0,
+                    age: parseFloat(document.getElementById('inputAge').value) || 0
                 };
             }
 
@@ -90,6 +94,13 @@ export function PredictionPanel() {
                 {selectedModel === 'anemia' ? (
                     <div className="input-grid" key="anemia">
                         <div className="input-group">
+                            <label>Giới tính</label>
+                            <select id="inputGender" defaultValue="1" style={{ padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid var(--border)', backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)', fontSize: '0.95rem' }}>
+                                <option value="0">Nữ</option>
+                                <option value="1">Nam</option>
+                            </select>
+                        </div>
+                        <div className="input-group">
                             <label>Hemoglobin (g/dL)</label>
                             <input id="inputHgb" type="number" placeholder="VD: 13.5" defaultValue="11.2" step="0.1" />
                         </div>
@@ -113,16 +124,28 @@ export function PredictionPanel() {
                             <input id="inputGluc" type="number" placeholder="VD: 90" defaultValue="130" />
                         </div>
                         <div className="input-group">
-                            <label>Chỉ số HbA1c (%)</label>
-                            <input id="inputHba1c" type="number" placeholder="VD: 5.5" defaultValue="7.2" step="0.1" />
+                            <label>Huyết áp - BloodPressure (mmHg)</label>
+                            <input id="inputBP" type="number" placeholder="VD: 72" defaultValue="80" />
                         </div>
                         <div className="input-group">
-                            <label>Huyết áp tâm thu (mmHg)</label>
-                            <input id="inputSys" type="number" placeholder="VD: 120" defaultValue="140" />
+                            <label>Độ dày da - SkinThickness (mm)</label>
+                            <input id="inputSkin" type="number" placeholder="VD: 35" defaultValue="30" />
                         </div>
                         <div className="input-group">
-                            <label>Huyết áp tâm trương (mmHg)</label>
-                            <input id="inputDia" type="number" placeholder="VD: 80" defaultValue="90" />
+                            <label>Insulin (mu U/ml)</label>
+                            <input id="inputInsulin" type="number" placeholder="VD: 100" defaultValue="80" />
+                        </div>
+                        <div className="input-group">
+                            <label>BMI (kg/m²)</label>
+                            <input id="inputBmi" type="number" placeholder="VD: 25.0" defaultValue="33.6" step="0.1" />
+                        </div>
+                        <div className="input-group">
+                            <label>Hệ số di truyền - DiabetesPedigree</label>
+                            <input id="inputPedigree" type="number" placeholder="VD: 0.5" defaultValue="0.627" step="0.001" />
+                        </div>
+                        <div className="input-group">
+                            <label>Tuổi</label>
+                            <input id="inputAge" type="number" placeholder="VD: 45" defaultValue="50" />
                         </div>
                     </div>
                 )}
