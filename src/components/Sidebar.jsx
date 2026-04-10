@@ -22,7 +22,7 @@ export function Sidebar({ currentPage, onNavigate }) {
                     className={`nav-item ${currentPage === 'dashboard' ? 'active' : ''}`}
                     onClick={(e) => { e.preventDefault(); onNavigate('dashboard'); }}
                 >
-                    <SquaresFour size={24} /> Bảng điều khiển
+                    <SquaresFour size= {24} /> Dự đoán nguy cơ
                 </a>
             </nav>
 
